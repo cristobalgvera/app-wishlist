@@ -1,10 +1,13 @@
 import "./globals.css";
 import Providers from "./providers";
 
-// export const metadata = {
-//   title: "Wishlist",
-//   description: "¡Mira nuestra lista de deseos!",
-// };
+export const metadata = {
+  title: "Wishlist - Dani y Cris",
+  description: "¡Mira nuestra lista de deseos!",
+  icons: {
+    icon: "/icon.png",
+  },
+};
 
 export default function RootLayout({
   children,
