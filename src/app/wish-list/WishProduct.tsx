@@ -61,7 +61,7 @@ export function WishProduct({
         <div
           className={`absolute w-full h-full opacity-80 grid place-content-center ${checkedBackground}`}
         >
-          <span className="text-2xl bg-gray-50 dark:bg-gray-800 rounded px-2 py-1">
+          <span className="text-2xl font-semibold bg-gray-50 dark:bg-gray-800 rounded px-2 py-1">
             {checkedMessage}
           </span>
         </div>
@@ -83,7 +83,6 @@ export function WishProduct({
           <button
             className="btn dark:btn-accent btn-primary btn-sm"
             disabled={actionDisabled}
-            onClick={handleMutation}
           >
             {actionMessage}
           </button>
