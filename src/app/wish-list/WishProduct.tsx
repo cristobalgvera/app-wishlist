@@ -37,7 +37,9 @@ export function WishProduct({
 
   useEffect(() => {
     setCheckedMessage(isMine ? "Ya lo elegiste 😉" : "Ya lo eligieron 🫣");
-    setCheckedBackground(isMine ? "bg-cyan-800" : "bg-gray-700");
+    setCheckedBackground(
+      isMine ? "bg-cyan-400 dark:bg-cyan-800" : "bg-gray-500 dark:bg-gray-700"
+    );
     setActionMessage(isMine ? "Desmarcar" : "Elegir");
     setActionDisabled((!isMine && checked) || mutation.isLoading);
   }, [isMine, checked, mutation.isLoading]);
@@ -59,7 +61,7 @@ export function WishProduct({
         <div
           className={`absolute w-full h-full opacity-80 grid place-content-center ${checkedBackground}`}
         >
-          <span className="text-2xl bg-gray-800 rounded px-2">
+          <span className="text-2xl bg-gray-50 dark:bg-gray-800 rounded px-2 py-1">
             {checkedMessage}
           </span>
         </div>
@@ -74,12 +76,12 @@ export function WishProduct({
       <figure className="h-2/5 md:h-auto md:w-5/12">
         <img src={imageUrl} alt={name} className="object-cover h-full w-full" />
       </figure>
-      <div className="card-body h-3/5 md:h-auto h-60 md:w-7/12 overflow-hidden w-full p-6">
+      <div className="card-body h-3/5 md:h-auto md:w-7/12 overflow-hidden w-full p-6">
         <h2 className="card-title">{name}</h2>
         <p className="truncate whitespace-break-spaces">{description}</p>
         <div className="card-actions justify-end z-10">
           <button
-            className="btn btn-accent btn-sm"
+            className="btn dark:btn-accent btn-primary btn-sm"
             disabled={actionDisabled}
             onClick={handleMutation}
           >

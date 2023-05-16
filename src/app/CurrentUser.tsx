@@ -11,7 +11,7 @@ export function CurrentUser() {
   return (
     <div className="dropdown dropdown-end">
       <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
-        <div className="w-10 rounded-full bg-gray-600">
+        <div className="w-10 rounded-full bg-gray-400 dark:bg-gray-600">
           <span className="flex justify-center items-center font-extrabold uppercase text-xl h-full">
             {user.at(0)}
           </span>
