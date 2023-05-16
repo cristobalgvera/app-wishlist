@@ -1,7 +1,3 @@
-"use client";
-
-import { useUserStore } from "@app/store";
-import { useEffect } from "react";
 import "./globals.css";
 import Providers from "./providers";
 
@@ -15,10 +11,6 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  useEffect(() => {
-    useUserStore.persist.rehydrate();
-  }, []);
-
   return (
     <html lang="es">
       <Providers>
