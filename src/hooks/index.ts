@@ -1,1 +1,2 @@
-export * from "./use-current-user";
+export * from "./use-products";
+export * from "./use-toggle-product";

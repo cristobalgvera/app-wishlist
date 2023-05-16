@@ -1,11 +1,23 @@
 "use client";
 
-import { ChangeEvent, useState } from "react";
+import { useUserStore } from "@app/store";
+import { useRouter } from "next/navigation";
+import { ChangeEvent, useCallback, useEffect, useState } from "react";
 
-export default function CurrentUserModal() {
-  const [showModal, setShowModal] = useState(true);
-  const [username, setUsername] = useState<string>();
+export function Login() {
+  const router = useRouter();
+  const [username, setUsername] = useState<string>("");
   const [error, setError] = useState<string>();
+  const setUser = useUserStore((state) => state.setUser);
+  const user = useUserStore((state) => state.user);
+
+  const pushToWishList = useCallback(() => {
+    router.push("/wish-list");
+  }, [router]);
+
+  useEffect(() => {
+    if (user) pushToWishList();
+  }, [user, pushToWishList]);
 
   function setNoUsernameError() {
     setError("Debes ingresar tu nombre de usuario");
@@ -14,8 +26,8 @@ export default function CurrentUserModal() {
   function handleUsernameAdded() {
     if (!username) return setNoUsernameError();
 
-    localStorage.setItem("current-user", username.trim());
-    setShowModal(false);
+    setUser(username.trim());
+    pushToWishList();
   }
 
   function handleUsernameChange({
@@ -29,13 +41,8 @@ export default function CurrentUserModal() {
   }
 
   return (
-    <>
-      <input
-        type="checkbox"
-        checked={showModal}
-        id="current-user-modal"
-        className="modal-toggle"
-      />
+    <div>
+      <input readOnly checked type="checkbox" className="modal-toggle" />
       <div className="modal">
         <div className="modal-box">
           <h3 className="font-bold text-lg">
@@ -49,18 +56,14 @@ export default function CurrentUserModal() {
             onChange={handleUsernameChange}
             onKeyUp={({ key }) => key === "Enter" && handleUsernameAdded()}
           />
-          {error && <p className="mt-2 text-red-500">{error}</p>}
+          {error ? <p className="mt-2 text-red-500">{error}</p> : null}
           <div className="modal-action">
-            <label
-              htmlFor="current-user-modal"
-              className="btn"
-              onClick={handleUsernameAdded}
-            >
+            <label className="btn" onClick={handleUsernameAdded}>
               Login
             </label>
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 }

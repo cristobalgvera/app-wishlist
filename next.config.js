@@ -1,9 +1,4 @@
 /** @type {import('next').NextConfig} */
-const nextConfig = {
-  images: {
-    // TODO: Remove hostname
-    remotePatterns: [{ hostname: "picsum.photos" }],
-  },
-};
+const nextConfig = {};
 
 module.exports = nextConfig;
