@@ -1,30 +1,33 @@
 "use client";
 
-import { useProducts } from "@app/hooks";
 import { Product } from "@app/shared";
 import { useUserStore } from "@app/store";
-import { useRouter } from "next/navigation";
-import { useEffect } from "react";
 import { WishProduct } from "./WishProduct";
 
 interface WishListProps {
+  listTitle: string;
+  addBottomDivider?: boolean;
   products: Product[];
 }
 
-export default function WishList({ products }: WishListProps) {
-  const router = useRouter();
+export function WishList({
+  products,
+  listTitle,
+  addBottomDivider,
+}: WishListProps) {
   const user = useUserStore((state) => state.user);
-  const { data } = useProducts(products);
 
-  useEffect(() => {
-    if (!user) router.push("/login");
-  }, [user, router]);
+  if (!products.length) return null;
 
   return (
-    <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
-      {data.map((product) => (
-        <WishProduct key={product.name} {...product} currentUser={user!} />
-      ))}
-    </div>
+    <>
+      <h2 className="font-bold text-lg">{listTitle}</h2>
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        {products.map((product) => (
+          <WishProduct key={product.id} {...product} currentUser={user!} />
+        ))}
+      </div>
+      {addBottomDivider ? <div className="divider" /> : null}
+    </>
   );
 }

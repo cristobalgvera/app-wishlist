@@ -11,6 +11,7 @@ export const useToggleProduct = (id: number) => {
   return useMutation({
     mutationKey: ["toggle-product", id, user],
     mutationFn: () => toggleProduct(id, user!),
-    onSuccess: () => queryClient.invalidateQueries({ queryKey: ["products"] }),
+    onSuccess: () =>
+      queryClient.invalidateQueries({ queryKey: ["grouped-products"] }),
   });
 };
