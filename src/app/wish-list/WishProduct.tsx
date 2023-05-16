@@ -36,8 +36,8 @@ export function WishProduct({
   }
 
   useEffect(() => {
-    setCheckedMessage(isMine ? "Ya lo elegiste" : "Ups, ya lo eligieron 🫣");
-    setCheckedBackground(isMine ? "bg-cyan-800" : "bg-gray-600");
+    setCheckedMessage(isMine ? "Ya lo elegiste 😉" : "Ya lo eligieron 🫣");
+    setCheckedBackground(isMine ? "bg-cyan-800" : "bg-gray-700");
     setActionMessage(isMine ? "Desmarcar" : "Elegir");
     setActionDisabled((!isMine && checked) || mutation.isLoading);
   }, [isMine, checked, mutation.isLoading]);
@@ -71,10 +71,10 @@ export function WishProduct({
           <progress className="progress progress-info w-3/12" />
         </div>
       ) : null}
-      <figure className="md:w-5/12">
+      <figure className="h-2/5 md:h-auto md:w-5/12">
         <img src={imageUrl} alt={name} className="object-cover h-full w-full" />
       </figure>
-      <div className="card-body h-60 md:w-7/12 overflow-hidden w-full p-6">
+      <div className="card-body h-3/5 md:h-auto h-60 md:w-7/12 overflow-hidden w-full p-6">
         <h2 className="card-title">{name}</h2>
         <p className="truncate whitespace-break-spaces">{description}</p>
         <div className="card-actions justify-end z-10">
