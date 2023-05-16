@@ -1,5 +1,6 @@
+import { CurrentUser } from "./CurrentUser";
 import "./globals.css";
-import Providers from "./providers";
+import { Providers } from "./providers";
 
 export const metadata = {
   title: "Wishlist - Dani y Cris",
@@ -17,8 +18,13 @@ export default function RootLayout({
   return (
     <html lang="es">
       <Providers>
-        <body className="flex min-h-screen flex-col items-center justify-between p-12 md:p-24">
-          {children}
+        <body className="flex flex-col gap-y-2 p-12 md:p-24">
+          <header className="flex flex-row justify-end">
+            <CurrentUser />
+          </header>
+          <main className="flex min-h-screen flex-col items-center justify-between">
+            {children}
+          </main>
         </body>
       </Providers>
     </html>
