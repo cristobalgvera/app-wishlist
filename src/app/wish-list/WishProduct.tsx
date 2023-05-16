@@ -39,8 +39,8 @@ export function WishProduct({
     setCheckedMessage(isMine ? "Ya lo elegiste" : "Ups, ya lo eligieron 🫣");
     setCheckedBackground(isMine ? "bg-cyan-800" : "bg-gray-600");
     setActionMessage(isMine ? "Desmarcar" : "Elegir");
-    setActionDisabled(!isMine && checked);
-  }, [isMine, checked]);
+    setActionDisabled((!isMine && checked) || mutation.isLoading);
+  }, [isMine, checked, mutation.isLoading]);
 
   useEffect(() => {
     setActionClass(
@@ -52,7 +52,7 @@ export function WishProduct({
 
   return (
     <div
-      className={`card card-side bg-base-100 shadow-xl max-h-48 overflow-hidden ${actionClass}`}
+      className={`card md:card-side bg-base-100 shadow-xl h-96 max-h-96 md:h-64 md:max-h-64 overflow-hidden ${actionClass}`}
       onClick={handleMutation}
     >
       {checked ? (
@@ -64,10 +64,17 @@ export function WishProduct({
           </span>
         </div>
       ) : null}
-      <figure>
-        <img src={imageUrl} alt={name} />
+      {mutation.isLoading ? (
+        <div
+          className={`absolute w-full h-full flex justify-center items-center opacity-80 ${checkedBackground}`}
+        >
+          <progress className="progress progress-info w-3/12" />
+        </div>
+      ) : null}
+      <figure className="md:w-5/12">
+        <img src={imageUrl} alt={name} className="object-cover h-full w-full" />
       </figure>
-      <div className="card-body overflow-hidden max-w-xs">
+      <div className="card-body h-60 md:w-7/12 overflow-hidden w-full p-6">
         <h2 className="card-title">{name}</h2>
         <p className="truncate whitespace-break-spaces">{description}</p>
         <div className="card-actions justify-end z-10">
