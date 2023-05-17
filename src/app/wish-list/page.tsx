@@ -1,6 +1,8 @@
 import { getGroupedProducts } from "@app/api";
 import { WishListGroup } from "./WishListGroup";
 
+export const revalidate = 1800;
+
 export default async function Page() {
   const groupedProducts = await getGroupedProducts();
 
