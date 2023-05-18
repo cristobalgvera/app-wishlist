@@ -14,7 +14,7 @@ export const useWishProduct = ({
   checkedBy,
 }: UseWishProductProps) => {
   const mutation = useToggleProduct(id);
-  const currentUser = useUserStore((state) => state.user!);
+  const currentUser = useUserStore((state) => state.user);
 
   const [checkedMessage, setCheckedMessage] = useState<string>("");
   const [checkedBackground, setCheckedBackground] = useState<string>("");
@@ -25,7 +25,7 @@ export const useWishProduct = ({
   const [actionClass, setActionClass] = useState<string>("");
 
   const isMine = useMemo(
-    () => currentUser === checkedBy,
+    () => currentUser?.toLocaleLowerCase() === checkedBy?.toLocaleLowerCase(),
     [currentUser, checkedBy]
   );
 

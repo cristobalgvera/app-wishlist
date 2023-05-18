@@ -20,11 +20,19 @@ export function WishListGroup({ groupedProducts }: WishListGroupProps) {
   } = useGroupedProducts(groupedProducts);
 
   const myProducts = useMemo<Product[]>(
-    () => checkedProducts.filter((product) => product.checkedBy === user),
+    () =>
+      checkedProducts.filter(
+        (product) =>
+          product.checkedBy?.toLocaleLowerCase() === user?.toLocaleLowerCase()
+      ),
     [user, checkedProducts]
   );
   const otherProducts = useMemo<Product[]>(
-    () => checkedProducts.filter((product) => product.checkedBy !== user),
+    () =>
+      checkedProducts.filter(
+        (product) =>
+          product.checkedBy?.toLocaleLowerCase() !== user?.toLocaleLowerCase()
+      ),
     [user, checkedProducts]
   );
 

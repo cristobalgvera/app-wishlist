@@ -32,6 +32,7 @@ export function WishList({
           >
             {messageIfEmpty}
           </p>
+          {addBottomDivider ? <div className="divider" /> : null}
         </>
       );
 
