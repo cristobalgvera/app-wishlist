@@ -26,8 +26,8 @@ export function WishList({
         <>
           <h2 className="font-bold text-lg">{listTitle}</h2>
           <p
-            className={`text-xl text-center text-gray-400 ${
-              animateEmpty ? "animate-bounce" : ""
+            className={`text-xl text-center -mb-6 text-gray-400 ${
+              animateEmpty ? "animate-bounce mt-4" : ""
             }`}
           >
             {messageIfEmpty}
