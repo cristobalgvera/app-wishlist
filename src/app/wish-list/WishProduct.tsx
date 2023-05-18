@@ -31,6 +31,10 @@ export function WishProduct({
         toast.success(checked ? "Producto desmarcado" : "Producto marcado", {
           icon: checked ? "🙁" : "🥳",
         }),
+      onError: () =>
+        toast.error("Algo salió mal, reinténtalo", {
+          icon: "😢",
+        }),
     });
   }
 

@@ -7,7 +7,7 @@ const contextClass: Record<TypeOptions, string> = {
   info: COMMON_STYLE,
   success: COMMON_STYLE,
   warning: COMMON_STYLE,
-  error: COMMON_STYLE,
+  error: "bg-red-500 dark:bg-red-800"
 };
 
 export function Toast() {
