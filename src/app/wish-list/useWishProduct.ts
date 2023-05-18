@@ -32,7 +32,7 @@ export const useWishProduct = ({
   useEffect(() => {
     setCheckedMessage(isMine ? "Ya lo elegiste 😉" : "Ya lo eligieron 🫣");
     setCheckedBackground(
-      isMine ? "bg-cyan-400 dark:bg-cyan-800" : "bg-gray-500 dark:bg-gray-700"
+      isMine ? "bg-gray-300 dark:bg-cyan-800" : "bg-gray-500 dark:bg-gray-700"
     );
     setActionMessage(isMine ? "Desmarcar" : "Elegir");
     setActionDisabled((!isMine && checked) || mutation.isLoading);
