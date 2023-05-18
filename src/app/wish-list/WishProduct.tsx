@@ -3,10 +3,9 @@
 import { useToggleProduct } from "@app/hooks";
 import { Product } from "@app/shared";
 import { useEffect, useMemo, useState } from "react";
+import { useWishProduct } from "./useWishProduct";
 
-interface WishProductProps extends Product {
-  currentUser: string;
-}
+interface WishProductProps extends Product {}
 
 export function WishProduct({
   id,
@@ -14,43 +13,20 @@ export function WishProduct({
   checked,
   description,
   imageUrl,
-  currentUser,
   checkedBy,
 }: WishProductProps) {
-  const mutation = useToggleProduct(id);
-  const [checkedMessage, setCheckedMessage] = useState<string>("");
-  const [checkedBackground, setCheckedBackground] = useState<string>("");
-  const [actionMessage, setActionMessage] = useState<"Elegir" | "Desmarcar">(
-    "Elegir"
-  );
-  const [actionDisabled, setActionDisabled] = useState<boolean>(false);
-  const [actionClass, setActionClass] = useState<string>("");
-
-  const isMine = useMemo(
-    () => currentUser === checkedBy,
-    [currentUser, checkedBy]
-  );
+  const {
+    toggleProductMutation,
+    checkedMessage,
+    checkedBackground,
+    actionMessage,
+    actionDisabled,
+    actionClass,
+  } = useWishProduct({ id, checked, checkedBy });
 
   function handleMutation() {
-    if (!actionDisabled) mutation.mutate();
+    if (!actionDisabled) toggleProductMutation.mutate();
   }
-
-  useEffect(() => {
-    setCheckedMessage(isMine ? "Ya lo elegiste 😉" : "Ya lo eligieron 🫣");
-    setCheckedBackground(
-      isMine ? "bg-cyan-400 dark:bg-cyan-800" : "bg-gray-500 dark:bg-gray-700"
-    );
-    setActionMessage(isMine ? "Desmarcar" : "Elegir");
-    setActionDisabled((!isMine && checked) || mutation.isLoading);
-  }, [isMine, checked, mutation.isLoading]);
-
-  useEffect(() => {
-    setActionClass(
-      actionDisabled
-        ? ""
-        : "cursor-pointer hover:scale-[1.03] ease-in duration-300"
-    );
-  }, [actionDisabled]);
 
   return (
     <div
@@ -66,7 +42,7 @@ export function WishProduct({
           </span>
         </div>
       ) : null}
-      {mutation.isLoading ? (
+      {toggleProductMutation.isLoading ? (
         <div
           className={`absolute w-full h-full flex justify-center items-center opacity-80 ${checkedBackground}`}
         >
