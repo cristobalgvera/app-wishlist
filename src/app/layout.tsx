@@ -1,5 +1,6 @@
 import { CurrentUser } from "./CurrentUser";
 import "./globals.css";
+import "react-toastify/dist/ReactToastify.css";
 import { Providers } from "./providers";
 
 export const metadata = {

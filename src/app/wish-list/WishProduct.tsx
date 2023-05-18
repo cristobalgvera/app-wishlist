@@ -1,9 +1,8 @@
 "use client";
 
-import { useToggleProduct } from "@app/hooks";
 import { Product } from "@app/shared";
-import { useEffect, useMemo, useState } from "react";
 import { useWishProduct } from "./useWishProduct";
+import { toast } from "react-toastify";
 
 interface WishProductProps extends Product {}
 
@@ -25,7 +24,14 @@ export function WishProduct({
   } = useWishProduct({ id, checked, checkedBy });
 
   function handleMutation() {
-    if (!actionDisabled) toggleProductMutation.mutate();
+    if (actionDisabled) return;
+
+    toggleProductMutation.mutate(undefined, {
+      onSuccess: () =>
+        toast.success(checked ? "Producto desmarcado" : "Producto marcado", {
+          icon: checked ? "🙁" : "🥳",
+        }),
+    });
   }
 
   return (

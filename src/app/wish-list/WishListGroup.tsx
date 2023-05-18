@@ -1,5 +1,6 @@
 "use client";
 
+import { Toast } from "@app/components";
 import { useGroupedProducts } from "@app/hooks";
 import { GroupedProducts, Product } from "@app/shared";
 import { useUserStore } from "@app/store";
@@ -49,6 +50,7 @@ export function WishListGroup({ groupedProducts }: WishListGroupProps) {
         messageIfEmpty="¡Ya no hay nada más que elegir!"
       />
       <WishList listTitle="💐 Elegidos por otros" products={otherProducts} />
+      <Toast />
     </div>
   );
 }
