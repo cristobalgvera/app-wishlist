@@ -34,13 +34,13 @@ export function WishListGroup({ groupedProducts }: WishListGroupProps) {
   return (
     <div className="grid grid-cols-1 gap-6">
       <WishList
-        listTitle="🎁 Por elegir"
-        products={uncheckedProducts}
+        listTitle="💝 Elegidos por ti"
+        products={myProducts}
         addBottomDivider
       />
       <WishList
-        listTitle="💝 Elegidos por ti"
-        products={myProducts}
+        listTitle="🎁 Por elegir"
+        products={uncheckedProducts}
         addBottomDivider
       />
       <WishList listTitle="💐 Elegidos por otros" products={otherProducts} />
