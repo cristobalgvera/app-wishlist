@@ -51,16 +51,20 @@ export function Login() {
           <p className="py-4">Elige tu nombre de usuario</p>
           <input
             type="text"
-            className="input input-accent w-full"
+            className="input input-primary dark:input-accent w-full"
             value={username}
             onChange={handleUsernameChange}
             onKeyUp={({ key }) => key === "Enter" && handleUsernameAdded()}
           />
           {error ? <p className="mt-2 text-red-500">{error}</p> : null}
           <div className="modal-action">
-            <label className="btn" onClick={handleUsernameAdded}>
+            <button
+              className="btn btn-primary dark:btn-accent"
+              disabled={!!error}
+              onClick={handleUsernameAdded}
+            >
               Login
-            </label>
+            </button>
           </div>
         </div>
       </div>
