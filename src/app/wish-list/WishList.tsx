@@ -1,23 +1,42 @@
 "use client";
 
 import { Product } from "@app/shared";
-import { useUserStore } from "@app/store";
 import { WishProduct } from "./WishProduct";
 
-interface WishListProps {
+type WishListProps = {
   listTitle: string;
   addBottomDivider?: boolean;
   products: Product[];
-}
+  showMessageIfEmpty?: true;
+  messageIfEmpty?: string;
+  animateEmpty?: boolean;
+};
 
 export function WishList({
   products,
   listTitle,
   addBottomDivider,
+  showMessageIfEmpty,
+  messageIfEmpty,
+  animateEmpty,
 }: WishListProps) {
-  const user = useUserStore((state) => state.user);
+  if (!products.length) {
+    if (showMessageIfEmpty)
+      return (
+        <>
+          <h2 className="font-bold text-lg">{listTitle}</h2>
+          <p
+            className={`text-xl text-center text-gray-400 ${
+              animateEmpty ? "animate-bounce" : ""
+            }`}
+          >
+            {messageIfEmpty}
+          </p>
+        </>
+      );
 
-  if (!products.length) return null;
+    return null;
+  }
 
   return (
     <>

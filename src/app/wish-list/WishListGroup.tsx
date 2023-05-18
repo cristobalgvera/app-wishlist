@@ -37,11 +37,16 @@ export function WishListGroup({ groupedProducts }: WishListGroupProps) {
         listTitle="💝 Elegidos por ti"
         products={myProducts}
         addBottomDivider
+        showMessageIfEmpty
+        animateEmpty
+        messageIfEmpty="¡Aún no has elegido nada de la wishlist!"
       />
       <WishList
         listTitle="🎁 Por elegir"
         products={uncheckedProducts}
         addBottomDivider
+        showMessageIfEmpty
+        messageIfEmpty="¡Ya no hay nada más que elegir!"
       />
       <WishList listTitle="💐 Elegidos por otros" products={otherProducts} />
     </div>
