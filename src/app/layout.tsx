@@ -6,9 +6,7 @@ import { Providers } from "./providers";
 export const metadata = {
   title: "Wishlist - Dani y Cris",
   description: "¡Mira nuestra lista de deseos!",
-  icons: {
-    icon: "/icon.png",
-  },
+  icons: { icon: "/icon.png" },
 };
 
 export default function RootLayout({
@@ -23,7 +21,7 @@ export default function RootLayout({
           <header className="flex flex-row justify-end">
             <CurrentUser />
           </header>
-          <main className="flex min-h-screen flex-col items-center justify-between">
+          <main className="flex flex-col items-center justify-between">
             {children}
           </main>
         </body>
