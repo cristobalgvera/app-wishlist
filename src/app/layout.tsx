@@ -17,7 +17,7 @@ export default function RootLayout({
   return (
     <html lang="es">
       <Providers>
-        <body className="flex flex-col gap-y-2 p-12 md:p-24">
+        <body className="flex flex-col min-h-screen gap-y-2 p-12 md:p-24">
           <header className="flex flex-row justify-end">
             <CurrentUser />
           </header>
