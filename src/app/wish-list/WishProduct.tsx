@@ -1,8 +1,9 @@
 "use client";
 
 import { Product } from "@app/shared";
-import { useWishProduct } from "./useWishProduct";
+import Image from "next/image";
 import { toast } from "react-toastify";
+import { useWishProduct } from "./useWishProduct";
 
 interface WishProductProps extends Product {}
 
@@ -60,7 +61,13 @@ export function WishProduct({
         </div>
       ) : null}
       <figure className="h-2/5 md:h-auto md:w-5/12">
-        <img src={imageUrl} alt={name} className="object-cover h-full w-full" />
+        <Image
+          src={imageUrl}
+          alt={name}
+          width={500}
+          height={500}
+          className="object-cover h-full w-full"
+        />
       </figure>
       <div className="card-body h-3/5 md:h-auto md:w-7/12 overflow-hidden w-full p-6">
         <h2 className="card-title">{name}</h2>
