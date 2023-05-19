@@ -29,13 +29,10 @@ export function WishProduct({
 
     toggleProductMutation.mutate(undefined, {
       onSuccess: () =>
-        toast.success(checked ? "Producto desmarcado" : "Producto marcado", {
+        toast.success(checked ? "Regalo quitado" : "Regalo seleccionado", {
           icon: checked ? "🙁" : "🥳",
         }),
-      onError: () =>
-        toast.error("Algo salió mal, reinténtalo", {
-          icon: "😢",
-        }),
+      onError: () => toast.error("Algo salió mal, reinténtalo", { icon: "😢" }),
     });
   }
 

@@ -16,13 +16,11 @@ export const useWishProduct = ({
   const mutation = useToggleProduct(id);
   const currentUser = useUserStore((state) => state.user);
 
-  const [checkedMessage, setCheckedMessage] = useState<string>("");
-  const [checkedBackground, setCheckedBackground] = useState<string>("");
-  const [actionMessage, setActionMessage] = useState<"Elegir" | "Desmarcar">(
-    "Elegir"
-  );
-  const [actionDisabled, setActionDisabled] = useState<boolean>(false);
-  const [actionClass, setActionClass] = useState<string>("");
+  const [checkedMessage, setCheckedMessage] = useState("");
+  const [checkedBackground, setCheckedBackground] = useState("");
+  const [actionMessage, setActionMessage] = useState("Elegir");
+  const [actionDisabled, setActionDisabled] = useState(false);
+  const [actionClass, setActionClass] = useState("");
 
   const isMine = useMemo(
     () => currentUser?.toLocaleLowerCase() === checkedBy?.toLocaleLowerCase(),
@@ -34,7 +32,7 @@ export const useWishProduct = ({
     setCheckedBackground(
       isMine ? "bg-gray-300 dark:bg-cyan-800" : "bg-gray-500 dark:bg-gray-700"
     );
-    setActionMessage(isMine ? "Desmarcar" : "Elegir");
+    setActionMessage(isMine ? "Quitar" : "Seleccionar");
     setActionDisabled((!isMine && checked) || mutation.isLoading);
   }, [isMine, checked, mutation.isLoading]);
 
